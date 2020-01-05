@@ -1,18 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express()
+const app = express();
 const request = require('request');
+const path = require('path');
 const apiKey = '3240b1e75c8dd9330997742e3b7fcedb';
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
     res.render('index');
-})
+});
 
 app.post('/', function (req, res) {
     let city = req.body.city;
@@ -39,8 +40,8 @@ app.post('/', function (req, res) {
             }
         }
     });
-})
+});
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
     console.log('Example app listening on port 3000!')
-})
+});
